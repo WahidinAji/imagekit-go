@@ -125,6 +125,6 @@ func (ik *ImageKit) SignToken(param SignTokenParam) SignedToken {
 func (ik *ImageKit) DefaultSignedToken() SignedToken {
 	return ik.SignToken(SignTokenParam{
 		Token:   ik.getToken(),
-		Expires: time.Now().Unix() + DefaultTokenExpire,
+		Expires: time.Now().Add(time.Minute * 30).Unix() + DefaultTokenExpire,
 	})
 }
