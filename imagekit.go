@@ -120,11 +120,3 @@ func (ik *ImageKit) SignToken(param SignTokenParam) SignedToken {
 	signature := hex.EncodeToString(mac.Sum(nil))
 	return SignedToken{Token: param.Token, Expires: param.Expires, Signature: signature}
 }
-
-// GetDefaultSignedToken returns a signed token with default expiration time
-func (ik *ImageKit) DefaultSignedToken() SignedToken {
-	return ik.SignToken(SignTokenParam{
-		Token:   ik.getToken(),
-		Expires: time.Now().Add(time.Minute * 30).Unix() + DefaultTokenExpire,
-	})
-}
